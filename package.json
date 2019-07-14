@@ -15,7 +15,12 @@
     "reports",
     "logger"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "@pirxpilot/connect": "^4.0.0",
+    "body-parser": "~1",
+    "dotenv": "~8",
+    "router": "~1"
+  },
   "devDependencies": {
     "jshint": "~2",
     "tape": "~4"
