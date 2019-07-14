@@ -1,0 +1,30 @@
+{
+  "name": "zsyp",
+  "version": "0.0.0",
+  "description": "CSP violation reports logger.",
+  "author": {
+    "name": "Damian Krzeminski",
+    "email": "pirxpilot@furkot.com",
+    "url": "https://pirxpilot.me"
+  },
+  "repository": "pirxpilot/zsyp",
+  "license": "MIT",
+  "keywords": [
+    "zsyp",
+    "csp",
+    "reports",
+    "logger"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "~2",
+    "tape": "~4"
+  },
+  "scripts": {
+    "test": "make check"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
+}
