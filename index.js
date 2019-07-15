@@ -6,11 +6,12 @@ const makeLogger = require('./lib/logger');
 
 const {
   ZSYP_PORT: PORT = 3090,
-  ZSYP_DOMAINS: domains
+  ZSYP_DOMAINS: domains,
+  ZSYP_DB: database = 'mongodb://localhost/zsyp'
 } = process.env;
 
 const app = connect();
-const log = makeLogger();
+const log = makeLogger({ database });
 
 app.use(function (req, res, next) {
   req.log = log;

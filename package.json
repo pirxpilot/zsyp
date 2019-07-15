@@ -19,6 +19,7 @@
     "@pirxpilot/connect": "^4.0.0",
     "body-parser": "~1",
     "dotenv": "~8",
+    "mniam": "^2.1.0",
     "router": "~1",
     "useragent": "^2.3.0"
   },
