@@ -18,6 +18,7 @@
   "dependencies": {
     "@pirxpilot/connect": "^4.0.0",
     "body-parser": "~1",
+    "debug": "~2 || ~3 || ~4",
     "dotenv": "~8",
     "mniam": "^2.1.0",
     "router": "~1",
