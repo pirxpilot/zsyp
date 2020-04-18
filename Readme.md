@@ -28,8 +28,8 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [npm-image]: https://img.shields.io/npm/v/zsyp.svg
 [npm-url]: https://npmjs.org/package/zsyp
 
-[travis-url]: https://travis-ci.org/pirxpilot/zsyp
-[travis-image]: https://img.shields.io/travis/pirxpilot/zsyp.svg
+[travis-url]: https://travis-ci.com/pirxpilot/zsyp
+[travis-image]: https://img.shields.io/travis/com/pirxpilot/zsyp.svg
 
 [deps-image]: https://img.shields.io/david/pirxpilot/zsyp.svg
 [deps-url]: https://david-dm.org/pirxpilot/zsyp
