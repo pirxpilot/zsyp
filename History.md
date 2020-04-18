@@ -1,4 +1,11 @@
 
+1.0.0 / 2020-04-18
+==================
+
+ * update docs
+ * update links to Travis build results
+ * update dependencies
+
 0.0.2 / 2019-07-17
 ==================
 
