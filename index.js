@@ -1,8 +1,8 @@
 require('dotenv').config({ path: '/etc/default/zsyp' });
 
 const connect = require('@pirxpilot/connect');
-const router = require('./lib/csp');
-const makeLogger = require('./lib/logger');
+const mniam = require('mniam');
+const router = require('./lib/router');
 
 const {
   ZSYP_PORT: PORT = 3090,
@@ -11,14 +11,9 @@ const {
 } = process.env;
 
 const app = connect();
-const log = makeLogger({ database });
+const db = mniam.db(database);
 
-app.use(function (req, res, next) {
-  req.log = log;
-  next();
-});
-app.use(router({ domains }));
-
+app.use(router({ domains, db }));
 
 module.exports = app;
 
