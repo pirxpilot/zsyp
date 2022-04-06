@@ -2,19 +2,10 @@ const test = require('tape');
 const makeFilter = require('../lib/filter');
 
 test('filter with no params', function (t) {
-  const req = {
-    body: {
-      'csp-report': {
-        'document-uri': 'https://example.com/login'
-      },
-    }
-  };
-
   const filter = makeFilter({});
 
-  t.plan(1);
-
-  filter(req, null,  () => t.pass());
+  t.equal(filter, undefined);
+  t.end();
 });
 
 test('filter match', function (t) {
