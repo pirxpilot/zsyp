@@ -1,7 +1,6 @@
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][build-image]][build-url]
 [![Dependency Status][deps-image]][deps-url]
-[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # zsyp
 
@@ -72,14 +71,11 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [capped collection]: https://docs.mongodb.com/manual/core/capped-collections/
 [dotenv]: https://www.npmjs.com/package/dotenv
 
-[npm-image]: https://img.shields.io/npm/v/zsyp.svg
+[npm-image]: https://img.shields.io/npm/v/zsyp
 [npm-url]: https://npmjs.org/package/zsyp
 
-[travis-url]: https://travis-ci.com/pirxpilot/zsyp
-[travis-image]: https://img.shields.io/travis/com/pirxpilot/zsyp.svg
+[build-url]: https://travis-ci.com/pirxpilot/zsyp
+[build-image]: https://img.shields.io/travis/com/pirxpilot/zsyp
 
-[deps-image]: https://img.shields.io/david/pirxpilot/zsyp.svg
-[deps-url]: https://david-dm.org/pirxpilot/zsyp
-
-[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/zsyp.svg
-[deps-dev-url]: https://david-dm.org/pirxpilot/zsyp?type=dev
+[deps-image]: https://img.shields.io/librariesio/release/npm/zsyp
+[deps-url]: https://libraries.io/npm/zsyp
