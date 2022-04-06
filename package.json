@@ -19,14 +19,14 @@
     "@pirxpilot/connect": "^4.0.0",
     "body-parser": "~1",
     "debug": "~2 || ~3 || ~4",
-    "dotenv": "~8",
+    "dotenv": "~16",
     "mniam": "^2.1.0",
     "router": "~1",
     "useragent": "^2.3.0"
   },
   "devDependencies": {
     "jshint": "~2",
-    "tape": "~4"
+    "tape": "~5"
   },
   "scripts": {
     "test": "make check"
