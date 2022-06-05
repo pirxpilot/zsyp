@@ -1,4 +1,10 @@
 
+1.1.0 / 2022-06-05
+==================
+
+ * replace Travis CI with github actions
+ * add support for `/event` path
+
 1.0.1 / 2022-04-06
 ==================
 
