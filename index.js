@@ -1,24 +1,15 @@
 require('dotenv').config({ path: '/etc/default/zsyp' });
 
-const connect = require('@pirxpilot/connect');
-const router = require('./lib/csp');
-const makeLogger = require('./lib/logger');
+const logger = require('./lib/logger');
+const makeApp = require('./lib/app');
 
 const {
   ZSYP_PORT: PORT = 3090,
-  ZSYP_DOMAINS: domains,
-  ZSYP_DB: database = 'mongodb://localhost/zsyp'
 } = process.env;
 
-const app = connect();
-const log = makeLogger({ database });
-
-app.use(function (req, res, next) {
-  req.log = log;
-  next();
+const app = makeApp({
+  logger
 });
-app.use(router({ domains }));
-
 
 module.exports = app;
 
