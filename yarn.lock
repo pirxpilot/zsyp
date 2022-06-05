@@ -48,11 +48,6 @@ asap@^2.0.0:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
 
-async@~3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
-  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
-
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -762,12 +757,11 @@ minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
-mniam@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/mniam/-/mniam-2.2.0.tgz#7de7f0b316883d34fa239ba8fdfd7da7f3f90d8d"
-  integrity sha512-Sio1RmLFtB08RPYp1ac6HBLRQrt5DFmYlrln4EMpmbFPwzioKIZQsumSTm2uySXSzvkySwXQqbYtwPuUVqXaQQ==
+mniam@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mniam/-/mniam-3.0.0.tgz#8acad59ea5dbf6db91250cfb30cfaf11a595c53d"
+  integrity sha512-qflMBqGP5+ZuZR2HGuIJtYiik8OfBPZMyIUFNo9kL2rpT/5m4KbgRy5TToromwrMRInyM3GrhnnyhhxA04Q0+g==
   dependencies:
-    async "~3"
     debug "~4"
     mongodb "~4"
 

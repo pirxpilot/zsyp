@@ -1,15 +1,12 @@
 require('dotenv').config({ path: '/etc/default/zsyp' });
 
-const logger = require('./lib/logger');
 const makeApp = require('./lib/app');
 
 const {
   ZSYP_PORT: PORT = 3090,
 } = process.env;
 
-const app = makeApp({
-  logger
-});
+const app = makeApp();
 
 module.exports = app;
 

@@ -5,8 +5,8 @@ const makeApp = require('../lib/app');
 
 let logged = [];
 
-function memoryLogger(arg) {
-  logged.push(arg);
+function memoryLogger({ from, item }) {
+  logged.push({ from, ...item });
 }
 
 const app = makeApp({

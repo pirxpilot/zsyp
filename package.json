@@ -20,7 +20,7 @@
     "body-parser": "~1",
     "debug": "~2 || ~3 || ~4",
     "dotenv": "~16",
-    "mniam": "^2.1.0",
+    "mniam": "^3.0.0",
     "router": "~1",
     "supertest": "~6",
     "useragent": "^2.3.0"
