@@ -1,11 +1,9 @@
 const test = require('tape');
 const supertest = require('supertest');
-// const mniam = require('mniam');
 
 process.env.ZSYP_DB = 'mongodb://localhost/test-zsyp';
 
 const makeApp = require('../lib/app');
-
 
 function makeNofier() {
   let done = false;
@@ -108,7 +106,7 @@ test('zsyp app', function (t) {
 
     const response = await request
       .post('/event')
-      .send({ type: 'error', stack: [] });
+      .send({ type: 'error', stack: '' });
 
     t.equal(response.status, 204, 'request was valid');
 
@@ -120,8 +118,5 @@ test('zsyp app', function (t) {
     t.equal(r.type, 'error');
     t.deepEqual(r.stack, []);
   });
-
-
-
 });
 
