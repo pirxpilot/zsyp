@@ -115,7 +115,6 @@ test('zsyp app', function (t) {
     const logged = await errors.find();
     t.equal(logged.length, 1, 'a single item has been logged');
     const r = logged[0];
-    t.equal(r.type, 'error');
     t.deepEqual(r.stack, []);
   });
 });
