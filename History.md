@@ -1,4 +1,12 @@
 
+1.2.0 / 2022-06-15
+==================
+
+ * add support for source maps
+ * add support for async converters
+ * add error stack parsing
+ * add support for versatile logging
+
 1.1.0 / 2022-06-05
 ==================
 
