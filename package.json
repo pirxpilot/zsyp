@@ -20,8 +20,11 @@
     "body-parser": "~1",
     "debug": "~2 || ~3 || ~4",
     "dotenv": "~16",
-    "mniam": "^2.1.0",
+    "error-stack-parser": "^2.1.4",
+    "lru-cache": "^7.10.1",
+    "mniam": "^3.0.0",
     "router": "~1",
+    "source-map": "^0.7.4",
     "supertest": "~6",
     "useragent": "^2.3.0"
   },
