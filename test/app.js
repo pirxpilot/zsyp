@@ -22,7 +22,7 @@ function makeNofier() {
   }
 
   function start() {
-    return new Promise(function(resolve) {
+    return new Promise(function (resolve) {
       done = resolve;
     });
   }
@@ -66,7 +66,7 @@ test('zsyp app', function (t) {
     t.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  t.test('from', async function (t) {
+  t.test('from in headers', async function (t) {
     await events.deleteMany();
     t.teardown(() => events.deleteMany());
 
@@ -79,6 +79,38 @@ test('zsyp app', function (t) {
         'x-forwarded-for': '10.1.2.5',
       })
       .send({ data: { item: 15 } });
+
+    t.equal(response.status, 204, 'request was valid');
+
+    await processingDone;
+
+    const logged = await events.find();
+    t.equal(logged.length, 1, 'a single item has been logged');
+    const r = logged[0];
+    t.deepEqual(r.data, { item: 15 });
+    t.deepEqual(r.from, {
+      ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
+      browser: { name: 'Firefox', version: '31' },
+      os: { name: 'Windows', version: '8.1' },
+      ip: '10.1.2.5'
+    });
+  });
+
+  t.test('from in item', async function (t) {
+    await events.deleteMany();
+    t.teardown(() => events.deleteMany());
+
+    const processingDone = notifier.start();
+
+    const response = await request
+      .post('/event')
+      .send({
+        from: {
+          ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
+          ip: '10.1.2.5'
+        },
+        data: { item: 15 }
+      });
 
     t.equal(response.status, 204, 'request was valid');
 
