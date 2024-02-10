@@ -75,7 +75,7 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [npm-url]: https://npmjs.org/package/zsyp
 
 [build-url]: https://github.com/pirxpilot/zsyp/actions/workflows/check.yaml
-[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/zsyp/check
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/zsyp/check.yaml?branch=main
 
 [deps-image]: https://img.shields.io/librariesio/release/npm/zsyp
 [deps-url]: https://libraries.io/npm/zsyp
