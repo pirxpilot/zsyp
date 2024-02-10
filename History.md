@@ -1,4 +1,13 @@
 
+1.2.3 / 2024-02-10
+==================
+
+ * soft dependency update
+ * upgrade lru-cache to ~10
+ * upgrade mniam to ~4
+ * replace tape with node:test
+ * replace jshint with @pirxpilot/jshint
+
 1.2.2 / 2022-06-22
 ==================
 
