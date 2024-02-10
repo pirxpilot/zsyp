@@ -1,14 +1,14 @@
-const test = require('tape');
+const test = require('node:test');
+const assert = require('node:assert/strict');
 const makeFilter = require('../lib/filter');
 
-test('filter with no params', function (t) {
+test('filter with no params', function () {
   const filter = makeFilter({});
 
-  t.equal(filter, undefined);
-  t.end();
+  assert.equal(filter, undefined);
 });
 
-test('filter match', function (t) {
+test('filter match', function (_, done) {
   const req = {
     body: {
       'csp-report': {
@@ -18,13 +18,10 @@ test('filter match', function (t) {
   };
 
   const filter = makeFilter({ domains: '^example' });
-
-  t.plan(1);
-
-  filter(req, null, () => t.pass());
+  filter(req, null, () => done());
 });
 
-test('filter no match', function (t) {
+test('filter no match', function () {
   const req = {
     body: {
       'csp-report': {
@@ -34,7 +31,5 @@ test('filter no match', function (t) {
   };
 
   const filter = makeFilter({ domains: 'google.com' });
-
-  filter(req, null, () => t.fail());
-  t.end();
+  filter(req, null, () => assert.fail('should not call'));
 });

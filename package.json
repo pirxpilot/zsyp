@@ -25,12 +25,11 @@
     "mniam": "^3.0.0",
     "router": "~1",
     "source-map": "^0.7.4",
-    "supertest": "~6",
     "useragent": "^2.3.0"
   },
   "devDependencies": {
     "@pirxpilot/jshint": "~3",
-    "tape": "~5"
+    "supertest": "~6"
   },
   "scripts": {
     "test": "make check"

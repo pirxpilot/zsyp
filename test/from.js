@@ -1,7 +1,8 @@
-const test = require('tape');
+const test = require('node:test');
+const assert = require('node:assert/strict');
 const from = require('../lib/from');
 
-test('from', function (t) {
+test('from', function (_, done) {
   const req = {
     headers: {
       'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
@@ -12,8 +13,8 @@ test('from', function (t) {
     }
   };
 
-  from(req, null, function() {
-    t.same(req.from, {
+  from(req, null, function () {
+    assert.deepEqual(req.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       ip: '10.1.2.5',
       browser: {
@@ -25,11 +26,11 @@ test('from', function (t) {
         version: '8.1'
       },
     });
-    t.end();
+    done();
   });
 });
 
-test('from body overwrite', function (t) {
+test('from body overwrite', function (_, done) {
   const req = {
     body: {
       from: {
@@ -45,8 +46,8 @@ test('from body overwrite', function (t) {
     }
   };
 
-  from(req, null, function() {
-    t.same(req.from, {
+  from(req, null, function () {
+    assert.deepEqual(req.from, {
       ua: 'Mozilla/5.0 (Linux; Android 10; K) Chrome/95.0.0.0 Safari/537.36',
       browser: {
         name: 'Chrome',
@@ -59,6 +60,6 @@ test('from body overwrite', function (t) {
       ip: '10:10::1',
       device: 'Generic Smartphone'
     });
-    t.end();
+    done();
   });
 });
