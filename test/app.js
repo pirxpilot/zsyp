@@ -1,4 +1,5 @@
-const test = require('tape');
+const test = require('node:test');
+const assert = require('node:assert/strict');
 const supertest = require('supertest');
 
 process.env.ZSYP_DB = 'mongodb://localhost/test-zsyp';
@@ -28,8 +29,8 @@ function makeNofier() {
   }
 }
 
-test('zsyp app', function (t) {
-  t.teardown(cleanup);
+test('zsyp app', async function (t) {
+  t.after(cleanup);
 
   const notifier = makeNofier();
   const app = makeApp({ finalMiddleware: notifier.middleware });
@@ -42,33 +43,33 @@ test('zsyp app', function (t) {
     await db.close();
   }
 
-  t.test('invalid path', async function (t) {
+  await t.test('invalid path', async function (t) {
     await events.deleteMany();
-    t.teardown(() => events.deleteMany());
+    t.after(() => events.deleteMany());
 
     const response = await request
       .post('/invalid')
       .send({ data: { item: 15 } });
-    t.equal(response.status, 404, 'response should be invalid');
+    assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
-    t.deepEqual(logged, [], 'nothing has been logged');
+    assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  t.test('invalid method', async function (t) {
+  await t.test('invalid method', async function (t) {
     await events.deleteMany();
-    t.teardown(() => events.deleteMany());
+    t.after(() => events.deleteMany());
 
     const response = await request
       .get('/csp');
 
-    t.equal(response.status, 404, 'response should be invalid');
+    assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
-    t.deepEqual(logged, [], 'nothing has been logged');
+    assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  t.test('from in headers', async function (t) {
+  await t.test('from in headers', async function (t) {
     await events.deleteMany();
-    t.teardown(() => events.deleteMany());
+    t.after(() => events.deleteMany());
 
     const processingDone = notifier.start();
 
@@ -80,15 +81,15 @@ test('zsyp app', function (t) {
       })
       .send({ data: { item: 15 } });
 
-    t.equal(response.status, 204, 'request was valid');
+    assert.equal(response.status, 204, 'request was valid');
 
     await processingDone;
 
     const logged = await events.find();
-    t.equal(logged.length, 1, 'a single item has been logged');
+    assert.equal(logged.length, 1, 'a single item has been logged');
     const r = logged[0];
-    t.deepEqual(r.data, { item: 15 });
-    t.deepEqual(r.from, {
+    assert.deepEqual(r.data, { item: 15 });
+    assert.deepEqual(r.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       browser: { name: 'Firefox', version: '31' },
       os: { name: 'Windows', version: '8.1' },
@@ -96,9 +97,9 @@ test('zsyp app', function (t) {
     });
   });
 
-  t.test('from in item', async function (t) {
+  await t.test('from in item', async function (t) {
     await events.deleteMany();
-    t.teardown(() => events.deleteMany());
+    t.after(() => events.deleteMany());
 
     const processingDone = notifier.start();
 
@@ -112,15 +113,15 @@ test('zsyp app', function (t) {
         data: { item: 15 }
       });
 
-    t.equal(response.status, 204, 'request was valid');
+    assert.equal(response.status, 204, 'request was valid');
 
     await processingDone;
 
     const logged = await events.find();
-    t.equal(logged.length, 1, 'a single item has been logged');
+    assert.equal(logged.length, 1, 'a single item has been logged');
     const r = logged[0];
-    t.deepEqual(r.data, { item: 15 });
-    t.deepEqual(r.from, {
+    assert.deepEqual(r.data, { item: 15 });
+    assert.deepEqual(r.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       browser: { name: 'Firefox', version: '31' },
       os: { name: 'Windows', version: '8.1' },
@@ -128,11 +129,11 @@ test('zsyp app', function (t) {
     });
   });
 
-  t.test('error', async function (t) {
+  await t.test('error', async function (t) {
     const errors = db.collection({ name: 'error' });
+    t.after(() => errors.deleteMany());
 
     await errors.deleteMany();
-    t.teardown(() => errors.deleteMany());
 
     const processingDone = notifier.start();
 
@@ -140,14 +141,13 @@ test('zsyp app', function (t) {
       .post('/event')
       .send({ type: 'error', stack: '' });
 
-    t.equal(response.status, 204, 'request was valid');
+    assert.equal(response.status, 204, 'request was valid');
 
     await processingDone;
 
     const logged = await errors.find();
-    t.equal(logged.length, 1, 'a single item has been logged');
+    assert.equal(logged.length, 1, 'a single item has been logged');
     const r = logged[0];
-    t.deepEqual(r.stack, []);
+    assert.deepEqual(r.stack, []);
   });
 });
-

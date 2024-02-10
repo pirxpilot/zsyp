@@ -21,16 +21,15 @@
     "debug": "~2 || ~3 || ~4",
     "dotenv": "~16",
     "error-stack-parser": "^2.1.4",
-    "lru-cache": "^7.10.1",
-    "mniam": "^3.0.0",
+    "lru-cache": "~10",
+    "mniam": "~4",
     "router": "~1",
     "source-map": "^0.7.4",
-    "supertest": "~6",
     "useragent": "^2.3.0"
   },
   "devDependencies": {
-    "jshint": "~2",
-    "tape": "~5"
+    "@pirxpilot/jshint": "~3",
+    "supertest": "~6"
   },
   "scripts": {
     "test": "make check"
