@@ -29,7 +29,7 @@
     "useragent": "^2.3.0"
   },
   "devDependencies": {
-    "jshint": "~2",
+    "@pirxpilot/jshint": "~3",
     "tape": "~5"
   },
   "scripts": {
