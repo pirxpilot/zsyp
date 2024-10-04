@@ -21,7 +21,7 @@
     "debug": "~2 || ~3 || ~4",
     "dotenv": "~16",
     "error-stack-parser": "^2.1.4",
-    "lru-cache": "~10",
+    "lru-cache": "~11",
     "mniam": "~4",
     "router": "~1",
     "source-map": "^0.7.4",
