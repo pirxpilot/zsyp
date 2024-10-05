@@ -1,4 +1,11 @@
 
+1.3.0 / 2024-10-05
+==================
+
+ * stop using `router`
+ * upgrade lru-cache to ~11
+ * upgrade supertest to ~7
+
 1.2.3 / 2024-02-10
 ==================
 
