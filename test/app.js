@@ -24,13 +24,13 @@ function makeNofier() {
   }
 
   function start() {
-    return new Promise(function (resolve) {
+    return new Promise(resolve => {
       done = resolve;
     });
   }
 }
 
-test('zsyp app', async function (t) {
+test('zsyp app', async t => {
   t.after(cleanup);
 
   const notifier = makeNofier();
@@ -44,7 +44,7 @@ test('zsyp app', async function (t) {
     await db.close();
   }
 
-  await t.test('invalid path', async function (t) {
+  await t.test('invalid path', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
@@ -59,7 +59,7 @@ test('zsyp app', async function (t) {
     assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  await t.test('invalid method', async function (t) {
+  await t.test('invalid method', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
@@ -70,7 +70,7 @@ test('zsyp app', async function (t) {
     assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  await t.test('from in headers', async function (t) {
+  await t.test('from in headers', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
@@ -102,7 +102,7 @@ test('zsyp app', async function (t) {
     });
   });
 
-  await t.test('from in item', async function (t) {
+  await t.test('from in item', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
@@ -138,7 +138,7 @@ test('zsyp app', async function (t) {
     });
   });
 
-  await t.test('error', async function (t) {
+  await t.test('error', async t => {
     const errors = db.collection({ name: 'error' });
     t.after(() => errors.deleteMany());
 

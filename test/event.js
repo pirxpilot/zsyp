@@ -6,14 +6,14 @@ const assert = require('node:assert/strict');
 const { ObjectId } = require('mongodb');
 const { converter } = require('../lib/event');
 
-test('converter for event', async function () {
+test('converter for event', async () => {
   const event = { type: 'event' };
   const converted = await converter(event);
   assert.deepEqual(converted.item, event, 'should not convert event type');
   assert.deepEqual(converted.meta, { name: 'event' });
 });
 
-test('converter for error', async function () {
+test('converter for error', async () => {
   const stack = `TypeError: app.forceError is not a function
     at makeApp (http://example.com/app.js:1:305)
     at app.use (http://example.com/app.js:1:600)`;
