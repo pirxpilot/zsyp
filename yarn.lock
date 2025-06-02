@@ -102,9 +102,9 @@ body-parser@~1:
     unpipe "1.0.0"
 
 bson@^6.10.3:
-  version "6.10.3"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-6.10.3.tgz#5f9a463af6b83e264bedd08b236d1356a30eda47"
-  integrity sha512-MTxGsqgYTwfshYWTRdmZRC+M7FnG1b4y7RO7p2k3X24Wq0yv1m77Wsj0BzlPzd/IowgESfsruQCUToa7vbOpPQ==
+  version "6.10.4"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-6.10.4.tgz#d530733bb5bb16fb25c162e01a3344fab332fd2b"
+  integrity sha512-WIsKqkSC0ABoBJuT1LEX+2HEvNmNKKgnTAyd0fL8qzK4SH2i9NXg+t08YtdZp/V9IZ33cxe3iV4yM0qg8lMQng==
 
 bytes@3.1.2:
   version "3.1.2"
@@ -465,7 +465,7 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
-supertest-fetch@^2.0.0:
+supertest-fetch@~2:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supertest-fetch/-/supertest-fetch-2.0.0.tgz#c4e60928d2542d73cff9ea5bf6b16c63cc13677d"
   integrity sha512-Mx2ZszLJkrBMFt7fmyML12y+u2yHAN5FF94yOzZXHzrTtsS59fjdbqh9G4OAPDM14jnkDkcLk2AgCVGJZcVoUg==
