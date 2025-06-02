@@ -14,7 +14,7 @@ function makeNofier() {
     middleware
   };
 
-  function middleware(req, res, next) {
+  function middleware(_req, _res, next) {
     if (done) {
       done();
       done = false;
@@ -47,9 +47,7 @@ test('zsyp app', async function (t) {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request
-      .post('/invalid')
-      .send({ data: { item: 15 } });
+    const response = await request.post('/invalid').send({ data: { item: 15 } });
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
     assert.deepEqual(logged, [], 'nothing has been logged');
@@ -59,8 +57,7 @@ test('zsyp app', async function (t) {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request
-      .get('/csp');
+    const response = await request.get('/csp');
 
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
@@ -77,7 +74,7 @@ test('zsyp app', async function (t) {
       .post('/event')
       .set({
         'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
-        'x-forwarded-for': '10.1.2.5',
+        'x-forwarded-for': '10.1.2.5'
       })
       .send({ data: { item: 15 } });
 
@@ -103,15 +100,13 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .send({
-        from: {
-          ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
-          ip: '10.1.2.5'
-        },
-        data: { item: 15 }
-      });
+    const response = await request.post('/event').send({
+      from: {
+        ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
+        ip: '10.1.2.5'
+      },
+      data: { item: 15 }
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 
@@ -137,9 +132,7 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .send({ type: 'error', stack: '' });
+    const response = await request.post('/event').send({ type: 'error', stack: '' });
 
     assert.equal(response.status, 204, 'request was valid');
 

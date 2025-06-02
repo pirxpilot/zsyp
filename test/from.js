@@ -24,7 +24,7 @@ test('from', function (_, done) {
       os: {
         name: 'Windows',
         version: '8.1'
-      },
+      }
     });
     done();
   });

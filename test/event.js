@@ -21,7 +21,7 @@ test('converter for error', async function () {
     type: 'error',
     an: 'zapp',
     av: '1.0.0',
-    message: "Uncaught TypeError: app.forceError is not a function",
+    message: 'Uncaught TypeError: app.forceError is not a function',
     stack
   };
   const converted = await converter(error);

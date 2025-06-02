@@ -13,7 +13,7 @@ test('filter match', function (_, done) {
     body: {
       'csp-report': {
         'document-uri': 'https://example.com/login'
-      },
+      }
     }
   };
 
@@ -26,7 +26,7 @@ test('filter no match', function () {
     body: {
       'csp-report': {
         'document-uri': 'https://example.com/login'
-      },
+      }
     }
   };
 

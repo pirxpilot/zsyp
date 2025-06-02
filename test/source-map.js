@@ -6,7 +6,6 @@ const assert = require('node:assert/strict');
 const { clear, resolve } = require('../lib/source-map');
 
 test('resolve position', async function (t) {
-
   const frame = ['app.js', 1, 305];
   const info = { an: 'zapp', av: '1.0.0' };
 
@@ -20,7 +19,6 @@ test('resolve position', async function (t) {
 });
 
 test('missing source map', async function () {
-
   const frame = ['index.js', 1, 305];
   const info = { an: 'zapp', av: '1.0.0' };
 
