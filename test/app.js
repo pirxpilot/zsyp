@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const supertest = require('supertest');
+const http = require('node:http');
+const { makeFetch } = require('supertest-fetch');
 
 process.env.ZSYP_DB = 'mongodb://localhost/test-zsyp';
 
@@ -14,7 +15,7 @@ function makeNofier() {
     middleware
   };
 
-  function middleware(req, res, next) {
+  function middleware(_req, _res, next) {
     if (done) {
       done();
       done = false;
@@ -23,63 +24,67 @@ function makeNofier() {
   }
 
   function start() {
-    return new Promise(function (resolve) {
+    return new Promise(resolve => {
       done = resolve;
     });
   }
 }
 
-test('zsyp app', async function (t) {
+test('zsyp app', async t => {
   t.after(cleanup);
 
   const notifier = makeNofier();
   const app = makeApp({ finalMiddleware: notifier.middleware });
   const { db } = app;
   const events = db.collection({ name: 'event' });
-  const request = supertest(app);
+  const request = makeFetch(http.createServer(app));
 
   async function cleanup() {
     await db.drop();
     await db.close();
   }
 
-  await t.test('invalid path', async function (t) {
+  await t.test('invalid path', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request
-      .post('/invalid')
-      .send({ data: { item: 15 } });
+    const response = await request('/invalid', {
+      method: 'POST',
+      body: {
+        data: { item: 15 }
+      }
+    });
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
     assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  await t.test('invalid method', async function (t) {
+  await t.test('invalid method', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request
-      .get('/csp');
+    const response = await request('/csp');
 
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
     assert.deepEqual(logged, [], 'nothing has been logged');
   });
 
-  await t.test('from in headers', async function (t) {
+  await t.test('from in headers', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .set({
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
         'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
-        'x-forwarded-for': '10.1.2.5',
-      })
-      .send({ data: { item: 15 } });
+        'x-forwarded-for': '10.1.2.5'
+      },
+      body: JSON.stringify({ data: { item: 15 } })
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 
@@ -97,21 +102,25 @@ test('zsyp app', async function (t) {
     });
   });
 
-  await t.test('from in item', async function (t) {
+  await t.test('from in item', async t => {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .send({
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         from: {
           ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
           ip: '10.1.2.5'
         },
         data: { item: 15 }
-      });
+      })
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 
@@ -129,7 +138,7 @@ test('zsyp app', async function (t) {
     });
   });
 
-  await t.test('error', async function (t) {
+  await t.test('error', async t => {
     const errors = db.collection({ name: 'error' });
     t.after(() => errors.deleteMany());
 
@@ -137,9 +146,13 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .send({ type: 'error', stack: '' });
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ type: 'error', stack: '' })
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 

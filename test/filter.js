@@ -2,18 +2,18 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const makeFilter = require('../lib/filter');
 
-test('filter with no params', function () {
+test('filter with no params', () => {
   const filter = makeFilter({});
 
   assert.equal(filter, undefined);
 });
 
-test('filter match', function (_, done) {
+test('filter match', (_, done) => {
   const req = {
     body: {
       'csp-report': {
         'document-uri': 'https://example.com/login'
-      },
+      }
     }
   };
 
@@ -21,12 +21,12 @@ test('filter match', function (_, done) {
   filter(req, null, () => done());
 });
 
-test('filter no match', function () {
+test('filter no match', () => {
   const req = {
     body: {
       'csp-report': {
         'document-uri': 'https://example.com/login'
-      },
+      }
     }
   };
 

@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const from = require('../lib/from');
 
-test('from', function (_, done) {
+test('from', (_, done) => {
   const req = {
     headers: {
       'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
@@ -13,7 +13,7 @@ test('from', function (_, done) {
     }
   };
 
-  from(req, null, function () {
+  from(req, null, () => {
     assert.deepEqual(req.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       ip: '10.1.2.5',
@@ -24,13 +24,13 @@ test('from', function (_, done) {
       os: {
         name: 'Windows',
         version: '8.1'
-      },
+      }
     });
     done();
   });
 });
 
-test('from body overwrite', function (_, done) {
+test('from body overwrite', (_, done) => {
   const req = {
     body: {
       from: {
@@ -46,7 +46,7 @@ test('from body overwrite', function (_, done) {
     }
   };
 
-  from(req, null, function () {
+  from(req, null, () => {
     assert.deepEqual(req.from, {
       ua: 'Mozilla/5.0 (Linux; Android 10; K) Chrome/95.0.0.0 Safari/537.36',
       browser: {
