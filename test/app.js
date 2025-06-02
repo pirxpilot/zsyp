@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const supertest = require('supertest');
+const http = require('node:http');
+const { makeFetch } = require('supertest-fetch');
 
 process.env.ZSYP_DB = 'mongodb://localhost/test-zsyp';
 
@@ -36,7 +37,7 @@ test('zsyp app', async function (t) {
   const app = makeApp({ finalMiddleware: notifier.middleware });
   const { db } = app;
   const events = db.collection({ name: 'event' });
-  const request = supertest(app);
+  const request = makeFetch(http.createServer(app));
 
   async function cleanup() {
     await db.drop();
@@ -47,7 +48,12 @@ test('zsyp app', async function (t) {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request.post('/invalid').send({ data: { item: 15 } });
+    const response = await request('/invalid', {
+      method: 'POST',
+      body: {
+        data: { item: 15 }
+      }
+    });
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
     assert.deepEqual(logged, [], 'nothing has been logged');
@@ -57,7 +63,7 @@ test('zsyp app', async function (t) {
     await events.deleteMany();
     t.after(() => events.deleteMany());
 
-    const response = await request.get('/csp');
+    const response = await request('/csp');
 
     assert.equal(response.status, 404, 'response should be invalid');
     const logged = await events.find();
@@ -70,13 +76,15 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request
-      .post('/event')
-      .set({
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
         'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
         'x-forwarded-for': '10.1.2.5'
-      })
-      .send({ data: { item: 15 } });
+      },
+      body: JSON.stringify({ data: { item: 15 } })
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 
@@ -100,12 +108,18 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request.post('/event').send({
-      from: {
-        ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
-        ip: '10.1.2.5'
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      data: { item: 15 }
+      body: JSON.stringify({
+        from: {
+          ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
+          ip: '10.1.2.5'
+        },
+        data: { item: 15 }
+      })
     });
 
     assert.equal(response.status, 204, 'request was valid');
@@ -132,7 +146,13 @@ test('zsyp app', async function (t) {
 
     const processingDone = notifier.start();
 
-    const response = await request.post('/event').send({ type: 'error', stack: '' });
+    const response = await request('/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ type: 'error', stack: '' })
+    });
 
     assert.equal(response.status, 204, 'request was valid');
 
