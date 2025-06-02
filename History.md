@@ -1,4 +1,11 @@
 
+1.3.1 / 2025-06-02
+==================
+
+ * use `superagent-fetch` in tests
+ * use `biome` as a linter and formatter
+ * soft dependency update
+
 1.3.0 / 2024-10-05
 ==================
 
