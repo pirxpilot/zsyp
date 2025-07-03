@@ -1,4 +1,11 @@
 
+1.4.1 / 2025-07-03
+==================
+
+ * upgrade biome to 2.0.6
+ * use `process.loadEnvFile` instead of `dotenv`
+ * use pnpm to manage dependencies
+
 1.4.0 / 2025-06-04
 ==================
 
