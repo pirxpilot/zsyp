@@ -1,4 +1,8 @@
-require('dotenv').config({ path: '/etc/default/zsyp' });
+try {
+  process.loadEnvFile('/etc/default/zsyp');
+} catch {
+  console.error('Failed to load config file.');
+}
 
 const makeApp = require('./lib/app');
 
