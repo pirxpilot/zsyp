@@ -163,4 +163,20 @@ test('zsyp app', async t => {
     const r = logged[0];
     assert.deepEqual(r.stack, []);
   });
+
+  await t.test('ping', async t => {
+    const pings = db.collection({ name: 'ping' });
+    t.after(() => pings.deleteMany());
+
+    await pings.deleteMany();
+
+    const response = await request('/_/ping');
+
+    assert.equal(response.status, 204, 'request was valid');
+
+    const logged = await pings.find();
+    assert.equal(logged.length, 1, 'a single item has been logged');
+    const r = logged[0];
+    assert.ok('timestamp' in r, 'timestamp is present');
+  });
 });
