@@ -18,15 +18,15 @@
   "dependencies": {
     "@pirxpilot/connect": "~4",
     "debug": "~4",
-    "dotenv": "~16",
     "error-stack-parser": "^2.1.4",
     "lru-cache": "~11",
     "mniam": "~4",
+    "mongodb": "~6",
     "source-map": "^0.7.4",
     "useragent": "^2.3.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "2.0.6",
     "supertest-fetch": "~2"
   },
   "scripts": {
