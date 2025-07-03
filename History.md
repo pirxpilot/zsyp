@@ -1,4 +1,10 @@
 
+1.5.0 / 2025-07-03
+==================
+
+ * add simple ping implementation
+ * fix `package.repository`
+
 1.4.1 / 2025-07-03
 ==================
 
