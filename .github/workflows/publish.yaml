@@ -1,7 +1,16 @@
-name: check
-on: [push]
+name: publish
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -14,10 +23,16 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
 
       - uses: supercharge/mongodb-github-action@1.7.0
         with:
           mongodb-version: '4.4'
 
+      # Ensure npm 11.5.1 or later is installed
+      - name: update npm
+        run: npm install -g npm@latest
+
       - run: make check
+      - run: npm publish

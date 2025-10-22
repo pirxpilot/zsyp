@@ -1,10 +1,9 @@
-require('./env');
+import './env.js';
 
-const test = require('node:test');
-const assert = require('node:assert/strict');
-
-const { ObjectId } = require('mongodb');
-const { converter } = require('../lib/event');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { ObjectId } from 'mongodb';
+import { converter } from '../lib/event.js';
 
 test('converter for event', async () => {
   const event = { type: 'event' };

@@ -1,6 +1,6 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const makeFilter = require('../lib/filter');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import makeFilter from '../lib/filter.js';
 
 test('filter with no params', () => {
   const filter = makeFilter({});

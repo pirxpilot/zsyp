@@ -1,6 +1,6 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const from = require('../lib/from');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import from from '../lib/from.js';
 
 test('from', (_, done) => {
   const req = {
