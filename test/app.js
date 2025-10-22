@@ -1,11 +1,10 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const http = require('node:http');
-const { makeFetch } = require('supertest-fetch');
+import './env.js';
 
-process.env.ZSYP_DB = 'mongodb://localhost/test-zsyp';
-
-const makeApp = require('../lib/app');
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import test from 'node:test';
+import { makeFetch } from 'supertest-fetch';
+import makeApp from '../lib/app.js';
 
 function makeNofier() {
   let done = false;

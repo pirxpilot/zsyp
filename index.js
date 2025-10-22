@@ -1,18 +1,13 @@
-try {
-  process.loadEnvFile('/etc/default/zsyp');
-} catch {
-  console.error('Failed to load config file.');
-}
-
-const makeApp = require('./lib/app');
+import './lib/env.js';
+import makeApp from './lib/app.js';
 
 const { ZSYP_PORT: PORT = 3090 } = process.env;
 
 const app = makeApp();
 
-module.exports = app;
+export default app;
 
-if (!module.parent) {
+if (import.meta.main) {
   app.listen(PORT);
   console.log('Listening on port', PORT);
 }

@@ -1,9 +1,8 @@
-require('./env');
+import './env.js';
 
-const test = require('node:test');
-const assert = require('node:assert/strict');
-
-const { clear, resolve } = require('../lib/source-map');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { clear, resolve } from '../lib/source-map.js';
 
 test('resolve position', async t => {
   const frame = ['app.js', 1, 305];
