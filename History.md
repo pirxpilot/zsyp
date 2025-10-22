@@ -1,4 +1,12 @@
 
+2.0.0 / 2025-10-22
+==================
+
+ * soft dependecy update
+ * transition to ESM
+ * upgrade github actions
+ * upgrade biome to 2.2.7
+
 1.5.0 / 2025-07-03
 ==================
 
