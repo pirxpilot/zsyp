@@ -20,17 +20,17 @@
     "logger"
   ],
   "dependencies": {
-    "@pirxpilot/connect": "~4",
+    "@pirxpilot/connect": "~5",
+    "bson": "~7",
     "debug": "~4",
     "error-stack-parser": "^2.1.4",
     "lru-cache": "~11",
-    "mniam": "~4",
-    "mongodb": "~6",
+    "mniam": "~5",
     "source-map": "^0.7.4",
-    "useragent": "^2.3.0"
+    "useragent-ng": "^2.4.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.7",
+    "@biomejs/biome": "2.3.11",
     "supertest-fetch": "~2"
   },
   "scripts": {

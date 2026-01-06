@@ -23,7 +23,7 @@ test('from', (_, done) => {
       },
       os: {
         name: 'Windows',
-        version: '8.1'
+        version: '8'
       }
     });
     done();
@@ -55,10 +55,10 @@ test('from body overwrite', (_, done) => {
       },
       os: {
         name: 'Android',
-        version: '0'
+        version: '10'
       },
       ip: '10:10::1',
-      device: 'Generic Smartphone'
+      device: 'K'
     });
     done();
   });
