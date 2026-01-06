@@ -96,7 +96,7 @@ test('zsyp app', async t => {
     assert.deepEqual(r.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       browser: { name: 'Firefox', version: '31' },
-      os: { name: 'Windows', version: '8.1' },
+      os: { name: 'Windows', version: '8' },
       ip: '10.1.2.5'
     });
   });
@@ -132,7 +132,7 @@ test('zsyp app', async t => {
     assert.deepEqual(r.from, {
       ua: 'Mozilla/5.0 (Windows NT 6.3; rv:31.0) Gecko/20100101 Firefox/31.0',
       browser: { name: 'Firefox', version: '31' },
-      os: { name: 'Windows', version: '8.1' },
+      os: { name: 'Windows', version: '8' },
       ip: '10.1.2.5'
     });
   });

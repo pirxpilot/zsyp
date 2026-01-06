@@ -27,7 +27,7 @@
     "mniam": "~4",
     "mongodb": "~6",
     "source-map": "^0.7.4",
-    "useragent": "^2.3.0"
+    "useragent-ng": "^2.4.5"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.7",
