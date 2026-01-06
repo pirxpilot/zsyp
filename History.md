@@ -1,4 +1,13 @@
 
+2.0.1 / 2026-01-06
+==================
+
+ * upgrade `biome` to 2.3.11
+ * upgrade `@pirxpilot/connect` to ~5
+ * upgrade `mniam` to ~5
+ * replace `useragent` with `useragent-ng`
+ * soft dependencies update
+
 2.0.0 / 2025-10-22
 ==================
 
