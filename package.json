@@ -21,11 +21,11 @@
   ],
   "dependencies": {
     "@pirxpilot/connect": "~4",
+    "bson": "~7",
     "debug": "~4",
     "error-stack-parser": "^2.1.4",
     "lru-cache": "~11",
-    "mniam": "~4",
-    "mongodb": "~6",
+    "mniam": "~5",
     "source-map": "^0.7.4",
     "useragent-ng": "^2.4.5"
   },

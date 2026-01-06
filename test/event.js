@@ -2,7 +2,7 @@ import './env.js';
 
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { ObjectId } from 'mongodb';
+import { ObjectId } from 'bson';
 import { converter } from '../lib/event.js';
 
 test('converter for event', async () => {
